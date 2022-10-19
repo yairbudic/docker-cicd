@@ -26,10 +26,6 @@ job('NodeJS example Yair') {
     triggers {
         scm('H/5 * * * *')
     }
-    wrappers {
-        nodejs('nodejs') // this is the name of the NodeJS installation in 
-                         // Manage Jenkins -> Configure Tools -> NodeJS Installations -> Name
-    }
     steps {
         shell("docker build -t test:test .")
     }
