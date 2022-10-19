@@ -15,7 +15,7 @@ job('NodeJS example') {
     steps {
         shell("npm install")
     }
-},
+}
 job('NodeJS example Yair') {
     scm {
         git('git://github.com/wardviaene/docker-demo.git') {  node -> // is hudson.plugins.git.GitSCM
