@@ -1,6 +1,6 @@
 job('NodeJS example') {
     scm {
-        git('git://github.com/wardviaene/docker-demo.git') {  node -> // is hudson.plugins.git.GitSCM
+        git('git://github.com/yairbudic/docker-demo.git') {  node -> // is hudson.plugins.git.GitSCM
             node / gitConfigName('DSL yaniv')
             node / gitConfigEmail('jenkins-dsl@newtech.academy')
         }
@@ -18,8 +18,8 @@ job('NodeJS example') {
 }
 job('NodeJS example Yair') {
     scm {
-        git('git://github.com/wardviaene/docker-demo.git') {  node -> // is hudson.plugins.git.GitSCM
-            node / gitConfigName('DSL yaniv')
+        git('git://github.com/yairbudic/docker-cicd.git') {  node -> // is hudson.plugins.git.GitSCM
+            node / gitConfigName('DSL Yair')
             node / gitConfigEmail('jenkins-dsl@newtech.academy')
         }
     }
