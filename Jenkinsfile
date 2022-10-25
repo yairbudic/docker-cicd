@@ -2,36 +2,63 @@ pipeline {
     agent any
 
     stages {
-       stage('Source') {
+        stage('Checkout From SCM') {
             steps {
-                echo "git pull reponame"
-                cd dir
-                ls *.xml | count
+                echo 'Checkout from SCM..'
+                echo checkout ...
+            }
+        }
+        stage('Pre-build stg') {
+            steps {
+                sh 'echo "prebuild build"'
             }
         }
         stage('Build') {
             steps {
-                echo 'Compile..'
+              sh 'echo "docke build'
             }
         }
-       stage('Test') {
+        stage('Test') {
+            steps {
+                echo 'docker build --target test'
+            }
+        }
+        stage('security') {
             agent {
-                docker { image 'sonar cube' }
+                docker { image 'alpine:latest' }
             }
             steps {
-                sh 'running test'
+                sh 'echo this is security'
             }
         }
-        
-        stage('integrationTest') {
+        stage('Back-end') {
             agent {
-                docker { image 'amazon/aws-cli' }
+                docker { image 'maven:3.8.1-adoptopenjdk-11' }
             }
             steps {
-                sh 'aws chechk server'
-                sh 'aws deploy {SERVER_IP}'
+                sh 'mvn --version'
             }
         }
+        stage('Front-end') {
+            agent {
+                docker { image 'node:16.13.1-alpine' }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
+        stage('Deploy') {
+            agent {
+                docker { image 'aws-cli:latest' }
+            }
+            steps {
+                sh 's3 cp src dst'
+            }
+        }
+      stage ('Post') {
+        echo "clear env"
+      }
+      
     }
 }
 
