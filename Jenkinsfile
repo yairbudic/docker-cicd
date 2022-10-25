@@ -19,12 +19,12 @@ pipeline {
         }
         stage('Security') {
             steps {
-                sh 'echo "docker build --target security""'
+                sh 'echo "docker build --target security"'
             }
         }
         stage('Back-end') {
             steps {
-                sh 'echo "docker build --target backend""'
+                sh 'echo "docker build --target backend"'
             }
         }
         stage('Front-end') {
