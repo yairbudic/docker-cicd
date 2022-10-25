@@ -1,46 +1,47 @@
 pipeline {
     agent any
-
     stages {
-        stage('Pre-build stg') {
+        stage('Pre-build') {
             steps {
-                echo 'Prebuild actions..'
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target pre-build .'
             }
         }
-        stage('Build') {
+        stage('build') {
             steps {
-              sh 'echo "docker build --target Build"'
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target build .'
             }
         }
-        stage('Test') {
+        stage('test') {
             steps {
-                sh 'echo "docker build --target test"'
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target test .'
             }
         }
-        stage('Security') {
+        stage('security') {
             steps {
-                sh 'echo "docker build --target security"'
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target security .'
             }
         }
-        stage('Back-end') {
+        stage('backend') {
             steps {
-                sh 'echo "docker build --target backend"'
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target back-end .'
             }
         }
-        stage('Front-end') {
+        stage('front-end') {
             steps {
-                sh 'echo "docker build --target Front-end"'
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target front-end .'
             }
         }
-        stage('Deploy') {
+        stage('deploy') {
             steps {
-                sh 'echo "docker build --target deploy"'
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target deploy .'
             }
         }
-        stage('Post') {
+        stage('post') {
             steps {
-                echo "Clear env"
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target post .'
             }
         }
     }
 }
+
+      
