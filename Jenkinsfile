@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Front-end') {
             steps {
-                sh 'docker build --target Front-end'
+                sh 'echo "docker build --target Front-end"'
             }
         }
         stage('Deploy') {
