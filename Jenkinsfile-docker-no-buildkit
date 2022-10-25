@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    stages {
+        stage('Pre-build') {
+            steps {
+                sh 'docker build --target pre-build .'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'docker build --target build .'
+            }
+        }
+        stage('test') {
+            steps {
+                sh 'docker build --target test .'
+            }
+        }
+        stage('security') {
+            steps {
+                sh 'docker build --target security .'
+            }
+        }
+        stage('backend') {
+            steps {
+                sh 'docker build --target back-end .'
+            }
+        }
+        stage('front-end') {
+            steps {
+                sh 'docker build --target front-end .'
+            }
+        }
+        stage('deploy') {
+            steps {
+                sh ' docker build --target deploy .'
+            }
+        }
+        stage('post') {
+            steps {
+                sh 'docker build --target post .'
+            }
+        }
+    }
+}
+
+      
